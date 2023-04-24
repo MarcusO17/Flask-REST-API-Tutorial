@@ -1,29 +1,28 @@
-from flask import Flask
-from flask_restful import Api, Resource
+from flask import Flask, request
+from flask_restful import Api, Resource, reqparse
 
 app = Flask(__name__)
 api = Api(app)
 
+videos
 #Caching
-names = {"marcus" : {"age" : 19, "gender": "male"},
-         "tim" : {"age" : 27, "gender": "male"}}
+videos = {}
 
-#Make Class with Resource
-# USING CRUD
-class HelloWorld(Resource):
-    #Read
-    def get(self, name):
-        return names[name]
+class Video(Resource):
+    #Create
+    def get(self, videoID):
+        return videos[videoID]
+    
+    #Add Data
+    def put(self, videoID):
+        return {}
 
-    """#Create
-    def post(self):
-        return {"data":"Posted"}"""
-
+api.add_resource(Video, "/video/<int:videoID>")
 
     
     
 #<> shows params
-api.add_resource(HelloWorld, "/helloworld/<string:name>")
+#api.add_resource(HelloWorld, "/helloworld/<string:name>")
 
 
 if __name__ == "__main__":
