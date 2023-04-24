@@ -4,13 +4,26 @@ from flask_restful import Api, Resource
 app = Flask(__name__)
 api = Api(app)
 
-#Make Class with Resource
-class HelloWorld(Resource):
-    def get(self):
-        return {"data":"Hello World"}
-    
+#Caching
+names = {"marcus" : {"age" : 19, "gender": "male"},
+         "tim" : {"age" : 27, "gender": "male"}}
 
-api.add_resource(HelloWorld, "/helloworld")
+#Make Class with Resource
+# USING CRUD
+class HelloWorld(Resource):
+    #Read
+    def get(self, name):
+        return names[name]
+
+    """#Create
+    def post(self):
+        return {"data":"Posted"}"""
+
+
+    
+    
+#<> shows params
+api.add_resource(HelloWorld, "/helloworld/<string:name>")
 
 
 if __name__ == "__main__":
